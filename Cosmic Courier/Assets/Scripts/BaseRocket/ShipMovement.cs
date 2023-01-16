@@ -6,46 +6,32 @@ public class ShipMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float rotationSpeed = 10f;
+    public float maxDeacceleration = 1f;
     private Rigidbody2D rb;
     private Animator anim;
 
-    Vector2 movement = Vector2.zero;
+    private float accelerate;
+    private float rotation;
 
     void Start()
     {
-	  rb = gameObject.GetComponent<Rigidbody2D>();
-
-      anim = gameObject.GetComponent<Animator>();
+	    rb = gameObject.GetComponent<Rigidbody2D>();
+        anim = gameObject.GetComponent<Animator>();
     }
 
     void Update()
     {
- 
+        accelerate = Mathf.Clamp(Input.GetAxis("Vertical"), -maxDeacceleration, 1f);
+        rotation = Input.GetAxis("Horizontal");
+
         //Animation
-        anim.SetFloat("ForwardAcceleration" , movement.sqrMagnitude);
+        anim.SetFloat("Acceleration" , accelerate);
     }
 
     void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.W))
-        {
-        rb.AddForce(transform.up * moveSpeed * Time.fixedDeltaTime);
-        }
-
-        if(Input.GetKey(KeyCode.S))
-        {
-        rb.AddForce(transform.up * -moveSpeed * Time.fixedDeltaTime);
-        }
-
-        if(Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(Vector3.forward, rotationSpeed * Time.fixedDeltaTime);
-        }
-
-        if(Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(Vector3.forward, -rotationSpeed * Time.fixedDeltaTime);
-        }
+        rb.AddForce(transform.up * accelerate * moveSpeed * Time.fixedDeltaTime);
+        transform.Rotate(Vector3.forward, rotation * rotationSpeed * Time.fixedDeltaTime);
     }
 
 }
