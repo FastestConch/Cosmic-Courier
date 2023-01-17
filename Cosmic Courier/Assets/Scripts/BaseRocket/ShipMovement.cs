@@ -31,7 +31,7 @@ public class ShipMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.AddForce(transform.up * accelerate * moveSpeed * Time.fixedDeltaTime);
-        transform.Rotate(Vector3.forward, rotation * rotationSpeed * Time.fixedDeltaTime);
+        transform.Rotate(Vector3.forward, Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.fixedDeltaTime);
     }
 
 }

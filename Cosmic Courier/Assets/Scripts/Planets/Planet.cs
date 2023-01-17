@@ -5,7 +5,6 @@ using UnityEngine;
 public class Planet : MonoBehaviour
 {
     public float sizeMultiplier = 2f;
-    public float duration = 5f;
     public void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
