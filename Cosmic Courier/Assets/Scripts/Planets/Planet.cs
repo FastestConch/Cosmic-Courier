@@ -5,14 +5,20 @@ using UnityEngine;
 public class Planet : MonoBehaviour
 {
     public float sizeMultiplier = 2f;
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
             this.transform.localScale = Vector3.one * sizeMultiplier;
-        }
-    }
 
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("PRESSED");
+            }
+        }
+
+    }
     public void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("Player"))

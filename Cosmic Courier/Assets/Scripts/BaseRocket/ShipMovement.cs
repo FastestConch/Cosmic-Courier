@@ -26,6 +26,7 @@ public class ShipMovement : MonoBehaviour
 
         //Animation
         anim.SetFloat("Acceleration" , accelerate);
+        anim.SetFloat("Rotation" , rotation);
     }
 
     void FixedUpdate()
