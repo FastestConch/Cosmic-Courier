@@ -25,8 +25,6 @@ public class Planet : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("PRESSED");
-
                 SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
             }
         }
